@@ -1,0 +1,317 @@
+/* ========================================================
+   SIT — CUSTOMER LANDING PAGE
+   Same visual language as customer storefront
+======================================================== */
+
+
+/* -----------------------------
+   PAGE
+----------------------------- */
+
+.landing-page {
+  min-height: calc(100vh - 56px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1.5rem;
+}
+
+
+/* -----------------------------
+   MAIN CARD
+----------------------------- */
+
+.landing-card {
+  width: 100%;
+  max-width: 460px;
+
+  padding: 2rem;
+
+  background: #ffffff;
+
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-sm);
+
+  text-align: center;
+}
+
+
+/* -----------------------------
+   BRAND
+----------------------------- */
+
+.landing-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.55rem;
+
+  margin-bottom: 2rem;
+}
+
+.landing-brand-mark {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 42px;
+  height: 32px;
+
+  padding: 0 0.55rem;
+
+  background: var(--primary);
+  color: #ffffff;
+
+  border-radius: var(--radius-sm);
+
+  font-size: 0.8rem;
+  font-weight: 800;
+
+  letter-spacing: 0.04em;
+}
+
+.landing-brand-name {
+  color: var(--text-muted);
+
+  font-size: 0.72rem;
+  font-weight: 700;
+
+  letter-spacing: 0.01em;
+}
+
+
+/* -----------------------------
+   SHOP ICON
+----------------------------- */
+
+.landing-shop-icon {
+  width: 72px;
+  height: 72px;
+
+  margin: 0 auto 1.15rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--primary-light);
+  color: var(--primary);
+
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-lg);
+}
+
+.landing-shop-icon svg {
+  width: 32px;
+  height: 32px;
+
+  stroke: var(--primary);
+  stroke-width: 1.8;
+}
+
+
+/* -----------------------------
+   CONTENT
+----------------------------- */
+
+.landing-content {
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.landing-eyebrow {
+  margin: 0 0 0.3rem;
+
+  color: var(--primary);
+
+  font-size: 0.68rem;
+  font-weight: 800;
+
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.landing-content h1 {
+  margin: 0;
+
+  color: var(--text-main);
+
+  font-size: 1.65rem;
+  font-weight: 800;
+
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.landing-shop-address {
+  margin: 0.4rem 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.landing-description {
+  margin: 1rem 0 0;
+
+  color: var(--text-body);
+
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+
+/* -----------------------------
+   ACTION
+----------------------------- */
+
+.landing-action {
+  margin-top: 1.5rem;
+}
+
+.landing-start-btn {
+  width: 100%;
+
+  min-height: 48px;
+
+  gap: 0.45rem;
+}
+
+.landing-start-btn svg {
+  width: 18px;
+  height: 18px;
+
+  stroke-width: 2;
+}
+
+
+/* -----------------------------
+   NOTE
+----------------------------- */
+
+.landing-note {
+  margin: 0.75rem 0 0;
+
+  color: var(--text-subtle);
+
+  font-size: 0.7rem;
+}
+
+
+/* -----------------------------
+   ERROR
+----------------------------- */
+
+.landing-error {
+  width: min(460px, calc(100% - 2rem));
+
+  margin: 5rem auto 0;
+
+  padding: 2rem;
+
+  background: #ffffff;
+
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-sm);
+
+  text-align: center;
+}
+
+.landing-error-icon {
+  width: 58px;
+  height: 58px;
+
+  margin: 0 auto 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--primary-light);
+  color: var(--primary);
+
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-md);
+}
+
+.landing-error-icon svg {
+  width: 26px;
+  height: 26px;
+
+  stroke-width: 1.8;
+}
+
+.landing-error h1 {
+  margin: 0;
+
+  color: var(--text-main);
+
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.landing-error p:last-child {
+  margin: 0.65rem auto 0;
+
+  max-width: 340px;
+
+  color: var(--text-muted);
+
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+
+/* -----------------------------
+   FOOTER
+----------------------------- */
+
+.landing-footer {
+  padding: 0 1rem 1.5rem;
+
+  text-align: center;
+
+  color: var(--text-muted);
+
+  font-size: 0.7rem;
+}
+
+
+/* -----------------------------
+   MOBILE
+----------------------------- */
+
+@media (max-width: 520px) {
+
+  .landing-page {
+    min-height: calc(100vh - 48px);
+
+    padding: 1rem;
+  }
+
+  .landing-card {
+    padding: 1.5rem 1.15rem;
+  }
+
+  .landing-brand {
+    margin-bottom: 1.6rem;
+  }
+
+  .landing-content h1 {
+    font-size: 1.4rem;
+  }
+
+  .landing-description {
+    font-size: 0.82rem;
+  }
+
+}

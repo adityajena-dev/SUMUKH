@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUMUKH - Customer Storefront</title>
+  <meta name="description" content="Browse products and place orders directly with your local shop.">
+  <link rel="icon" type="image/png" href="assets/icons/sumukh-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/sumukh-icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icons/sumukh-icon-192.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/customer.css">
+  <link rel="stylesheet" href="css/bill.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script
+  src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"
+  defer
+></script>
+</head>
+<body>
+
+  <!-- TOAST NOTIFICATIONS -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- ========================================================
+       CUSTOMER STOREFRONT INTERFACE
+  ======================================================== -->
+  <div id="customer-app">
+
+    <!-- STORE HEADER -->
+    <header class="cust-header">
+
+  <div class="cust-header-inner">
+
+    <div class="cust-shop-brand">
+
+      <div class="cust-shop-avatar">
+        S
+      </div>
+
+      <div class="cust-shop-info">
+
+        <p class="cust-shop-eyebrow">
+          STORE
+        </p>
+
+        <h1
+          id="cust-shop-name"
+          class="cust-shop-title">
+          Store
+        </h1>
+
+        <p
+          id="cust-shop-address"
+          class="cust-shop-meta"
+        >
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+    <!-- SHOP NOT FOUND WARNING STATE -->
+    <div id="cust-shop-not-found" class="card text-center p-4 m-3" hidden style="background: var(--rose-light); border-color: var(--rose-border);">
+      <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">
+  <i data-lucide="store"></i>
+</div>
+      <h3 style="font-weight: 800; color: var(--rose-text);">Shop Not Found</h3>
+      <p id="cust-not-found-msg" style="font-size: 0.88rem; color: var(--rose-text); margin: 0.5rem 0;">
+        We could not find the shop requested by this link.
+      </p>
+      <a href="shop.html" class="btn btn-primary btn-sm" style="display: inline-block; margin-top: 0.5rem;">
+        Back to Stores
+      </a>
+    </div>
+
+    <!-- ========================================================
+     CUSTOMER DASHBOARD
+======================================================== -->
+<section id="cust-dashboard-view" class="cust-dashboard" hidden>
+
+  <div class="cust-dashboard-header">
+    <div>
+      <p class="cust-dashboard-eyebrow">CUSTOMER</p>
+      <h1>Your Stores</h1>
+      <p>Choose a store to browse products and place an order.</p>
+    </div>
+  </div>
+
+  <div class="cust-dashboard-section">
+    <h2>Stores</h2>
+
+    <div id="cust-store-list" class="cust-store-list">
+      <!-- Store cards are rendered by customer.js -->
+    </div>
+  </div>
+
+</section>
+
+    <!-- CUSTOMER MAIN CONTENT -->
+    <main class="cust-main" id="cust-main-content">
+
+      <!-- ========================================================
+     VIEW: STORE PRODUCTS
+======================================================== -->
+
+<section
+  id="cust-view-shop"
+  class="cust-view active"
+>
+
+<div
+  class="cust-store-back-row"
+  style="
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  "
+>
+  <button
+    id="btn-back-to-all-stores"
+    class="btn btn-ghost btn-xs"
+    type="button"
+  >
+    <i data-lucide="chevron-left"></i>
+    <span>All Stores</span>
+  </button>
+
+  <button
+    id="btn-view-track-orders"
+    class="btn btn-ghost btn-xs"
+    type="button"
+  >
+    <i data-lucide="receipt-text"></i>
+    <span>Track Orders</span>
+  </button>
+</div>
+
+  <div class="cust-products-header">
+
+    <div>
+      <p class="cust-products-eyebrow">
+        PRODUCTS
+      </p>
+
+      <h2>
+        Select Items
+      </h2>
+
+      <p>
+        Choose the products and quantity you want to order.
+      </p>
+    </div>
+
+  </div>
+
+
+  <!-- PRODUCTS -->
+  <div
+    id="cust-products-grid"
+    class="cust-products-grid"
+  ></div>
+
+
+  <!-- ORDER CONFIRMATION -->
+  <div
+    id="cust-order-confirm-box"
+    class="cust-order-confirm-box"
+    hidden
+  >
+
+    <div class="cust-order-confirm-summary">
+
+      <div>
+        <span class="cust-order-label">
+          Your Order
+        </span>
+
+        <strong id="cust-order-selected-count">
+          0 items
+        </strong>
+      </div>
+
+      <div class="cust-order-total-wrap">
+        <span>Total</span>
+
+        <strong id="cust-order-selected-total">
+          ₹0.00
+        </strong>
+      </div>
+
+    </div>
+
+
+    <button
+      id="btn-confirm-order"
+      class="btn btn-primary btn-lg btn-block"
+      type="button"
+    >
+      Proceed to Checkout
+    </button>
+
+    <p class="cust-confirm-note">
+      Your details will be collected before the order is sent to the shop.
+    </p>
+
+  </div>
+
+</section>
+
+
+
+
+      <!-- VIEW: CHECKOUT -->
+      <section id="cust-view-checkout" class="cust-view" hidden>
+        <div class="cust-cart-card">
+          <div class="cust-section-title-row">
+
+  <div>
+    <p class="cust-products-eyebrow">
+      CONFIRM ORDER
+    </p>
+
+    <h2>
+      Delivery Details
+    </h2>
+  </div>
+
+</div>
+
+          <p class="cust-checkout-note">Enter your address so the shop owner can deliver your order.</p>
+
+          <form id="cust-checkout-form">
+            <div class="form-group">
+              <label for="cust-checkout-name">Your Full Name *</label>
+              <input id="cust-checkout-name" type="text" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="cust-checkout-phone">Mobile Phone Number *</label>
+              <input id="cust-checkout-phone" type="tel" placeholder="Enter 10-digit mobile number" required>
+            </div>
+
+            <div class="form-group">
+              <label for="cust-checkout-address">Delivery Address *</label>
+              <textarea id="cust-checkout-address" rows="3" placeholder="House/Flat No, Landmark, Street" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="cust-checkout-notes">Special Instructions (Optional)</label>
+              <input id="cust-checkout-notes" type="text" placeholder="e.g. Call before arrival, leave at door">
+            </div>
+
+            <!-- Order Recap Box -->
+            <div class="checkout-recap-box">
+              <div id="checkout-recap-items" style="margin-bottom: 0.75rem;"></div>
+              <div class="summary-row">
+                <span>Items in Order:</span>
+                <strong id="checkout-recap-count">0 items</strong>
+              </div>
+              <div class="summary-row summary-grand-total">
+                <span>Total Amount:</span>
+                <strong id="checkout-recap-total">₹0.00</strong>
+              </div>
+              <div class="checkout-pay-mode">
+                <span>Payment Mode:</span>
+                <span class="pay-mode-pill">
+  Pay on Delivery / UPI
+</span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block mt-3">
+              Confirm & Place Order
+            </button>
+          </form>
+
+          <button
+            id="btn-cust-back-to-products"
+            class="btn btn-ghost btn-sm btn-block"
+            type="button"
+            style="margin-top: 0.75rem;"
+          >
+            <i data-lucide="arrow-left"></i>
+            <span>Back to Products</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- VIEW: ORDER TRACKING -->
+      <section id="cust-view-track" class="cust-view" hidden>
+        <div class="cust-track-card">
+          <div style="margin-bottom: 0.75rem;">
+            <button
+              id="btn-track-back-to-shop"
+              class="btn btn-ghost btn-xs"
+              type="button"
+            >
+              <i data-lucide="arrow-left"></i>
+              <span>Back to Products</span>
+            </button>
+          </div>
+
+          <div id="cust-track-order-details"></div>
+
+          <div class="past-orders-section mt-4">
+            <h3 class="past-orders-heading">Your Recent Orders</h3>
+            <div id="cust-my-orders-list" class="orders-list"></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="cust-footer">
+      <p>Powered by <strong>SUMUKH</strong> — Orders Made Simple.</p>
+      <a href="index.html" class="btn btn-ghost btn-xs mt-1">
+  <i data-lucide="layout-dashboard"></i>
+  <span>Are you the shop owner? Open Dashboard</span>
+</a>
+    </footer>
+
+  </div><!-- /#customer-app -->
+
+
+  <!-- ========================================================
+       MODAL: BILL & PAYMENT QR (Customer View)
+  ======================================================== -->
+  <div id="bill-modal" class="modal-backdrop" hidden>
+    <div class="modal-dialog modal-dialog-bill">
+      <div class="modal-content">
+        <div class="modal-header no-print">
+          <h2>Order Bill</h2>
+          <button
+  id="btn-close-bill-modal"
+  class="modal-close-btn"
+  aria-label="Close bill"
+  type="button"
+>
+  <i data-lucide="x"></i>
+</button>
+        </div>
+
+        <div class="modal-body p-0">
+          <article id="printable-bill" class="bill-sheet">
+            <div class="bill-header">
+              <div class="bill-store-info">
+                <h1 id="bill-shop-name" class="bill-brand">—</h1>
+                <p id="bill-shop-address" class="bill-sub">—</p>
+                <p id="bill-shop-phone" class="bill-sub">—</p>
+              </div>
+              <div class="bill-meta">
+                <div class="bill-badge">INVOICE</div>
+                <p><strong>Order ID:</strong> <span id="bill-order-id">—</span></p>
+                <p><strong>Date:</strong> <span id="bill-order-date">—</span></p>
+                <p><strong>Time:</strong> <span id="bill-order-time">—</span></p>
+                <p><strong>Status:</strong> <span id="bill-order-status" class="status-pill status-completed">Completed</span></p>
+              </div>
+            </div>
+
+            <hr class="bill-divider">
+
+            <div class="bill-customer-info">
+              <div class="bill-cust-col">
+                <span class="bill-label">Billed To:</span>
+                <strong id="bill-cust-name" class="bill-val-lg">—</strong>
+                <p id="bill-cust-phone" class="bill-val">—</p>
+                <p id="bill-cust-address" class="bill-val">—</p>
+              </div>
+              <div class="bill-cust-col text-right">
+                <span class="bill-label">Payment Method:</span>
+                <strong id="bill-payment-method" class="bill-val">Cash / UPI on Delivery</strong>
+                <span id="bill-payment-badge" class="pay-status-pill pay-status-paid">PAID</span>
+              </div>
+            </div>
+
+            <table class="bill-table">
+              <thead>
+                <tr>
+                  <th style="width: 32px;">#</th>
+                  <th>Item Description</th>
+                  <th class="text-right" style="width: 75px;">Rate</th>
+                  <th class="text-center" style="width: 50px;">Qty</th>
+                  <th class="text-right" style="width: 80px;">Total</th>
+                </tr>
+              </thead>
+              <tbody id="bill-items-tbody"></tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="4" class="text-right font-bold">Subtotal:</td>
+                  <td id="bill-calc-subtotal" class="text-right font-bold">₹0.00</td>
+                </tr>
+                <tr>
+                  <td colspan="4" class="text-right text-muted">Delivery:</td>
+                  <td class="text-right text-muted">FREE</td>
+                </tr>
+                <tr class="bill-total-row">
+                  <td colspan="4" class="text-right">Grand Total:</td>
+                  <td id="bill-calc-grand-total" class="text-right">₹0.00</td>
+                </tr>
+              </tfoot>
+            </table>
+
+            <!-- PAYMENT QR SECTION -->
+            <div class="bill-payment-section">
+              <div class="bill-qr-block">
+                <div class="qr-canvas-box" id="bill-qr-box"></div>
+                <div class="qr-info-box">
+                  <span class="qr-badge">SCAN TO PAY VIA UPI</span>
+                  <p class="qr-amount-callout">Amount to Pay: <strong id="bill-qr-amount">₹0.00</strong></p>
+                  <p class="qr-upi-callout">UPI ID: <code id="bill-qr-upi-id">—</code></p>
+                  <p class="qr-apps-hint">Supported: GPay, PhonePe, Paytm, BHIM</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bill-footer">
+              <p>Thank you for your order! For questions, call the shop directly.</p>
+              <small>System-generated bill via SUMUKH Local Business Ordering</small>
+            </div>
+          </article>
+        </div>
+
+        <div class="modal-footer no-print">
+
+  <button id="btn-print-bill" class="btn btn-primary">
+    <i data-lucide="printer"></i>
+    <span>Print Bill</span>
+  </button>
+
+  <button id="btn-download-bill" class="btn btn-outline">
+    <i data-lucide="download"></i>
+    <span>Save Receipt</span>
+  </button>
+
+  <button id="btn-modal-close-action" class="btn btn-ghost">
+    <span>Close</span>
+  </button>
+
+</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL: ORDER CONFIRMATION
+  ======================================================== -->
+  <div id="cust-order-confirmed-modal" class="modal-backdrop" hidden>
+    <div class="modal-dialog" style="max-width: 440px;">
+      <div class="modal-content" style="padding: 1.5rem; text-align: center;">
+<div class="cust-success-heading">
+  <span class="cust-success-icon">
+    <i data-lucide="circle-check"></i>
+  </span>
+
+  <h2>
+    Order Placed Successfully!
+  </h2>
+</div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">
+          Your order has been received by <strong id="confirmed-shop-name">the store</strong>.
+        </p>
+
+        <div class="card my-3 p-3 text-left" style="background: var(--bg-subtle); border-radius: var(--radius-sm); font-size: 0.82rem;">
+          <div class="summary-row" style="padding: 2px 0;">
+            <span>Order ID:</span>
+            <strong id="confirmed-order-id">—</strong>
+          </div>
+          <div class="summary-row" style="padding: 2px 0;">
+            <span>Total Items:</span>
+            <strong id="confirmed-order-items">0 items</strong>
+          </div>
+          <div class="summary-row" style="padding: 2px 0;">
+            <span>Total Amount:</span>
+            <strong id="confirmed-order-total" style="color: var(--primary);">₹0.00</strong>
+          </div>
+          <div class="summary-row" style="padding: 2px 0;">
+            <span>Payment Mode:</span>
+            <span class="pay-mode-pill"> Cash / UPI on Delivery</span>
+          </div>
+        </div>
+
+       <div style="display: flex; flex-direction: column; gap: 8px;">
+  <button id="btn-confirmed-track-order" class="btn btn-primary btn-block" type="button">
+    Track Order
+  </button>
+  <button id="btn-confirmed-view-bill" class="btn btn-outline btn-block" type="button">
+    View Bill
+  </button>
+  <button id="btn-confirmed-back-to-products" class="btn btn-ghost btn-block" type="button">
+    Back to Products
+  </button>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+<script src="js/data.js"></script>
+<script src="js/config.js"></script>
+
+<!-- PDF generation -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js"></script>
+
+<script src="js/bill.js"></script>
+<script src="js/customer.js"></script>
+<script src="js/app.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    SIT_APP.initShopPage();
+  });
+
+  window.addEventListener("load", () => {
+    if (window.lucide) {
+      lucide.createIcons();
+    } else {
+      console.error("SIT: Lucide failed to load.");
+    }
+  });
+</script>
+</body>
+</html>

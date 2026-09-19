@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SUMUKH - Orders Made Simple</title>
+
+  <meta
+    name="description"
+    content="Order directly from your local shop using SUMUKH."
+  >
+  <link rel="icon" type="image/png" href="assets/icons/sumukh-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/sumukh-icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icons/sumukh-icon-192.png">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- SIT shared styles -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/landing.css">
+
+  <!-- Same customer font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Lucide -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"
+    defer
+  ></script>
+</head>
+
+<body>
+
+  <div id="landing-app">
+
+    <main class="landing-page">
+
+      <section class="landing-card">
+
+        <!-- SIT BRAND -->
+        <div class="landing-brand">
+          <div class="landing-brand-mark">SUMUKH</div>
+
+          <span class="landing-brand-name">
+            Local Business Ordering
+          </span>
+        </div>
+
+
+        <!-- SHOP ICON -->
+        <div class="landing-shop-icon" aria-hidden="true">
+          <i data-lucide="store"></i>
+        </div>
+
+
+        <!-- SHOP INFORMATION -->
+        <div class="landing-content">
+
+          <p class="landing-eyebrow">
+            WELCOME
+          </p>
+
+          <h1 id="landing-shop-name">
+            My Shop
+          </h1>
+
+          <p
+            id="landing-shop-address"
+            class="landing-shop-address"
+          >
+            Store Address
+          </p>
+
+          <p class="landing-description">
+            Browse products and place your order
+            directly from this shop.
+          </p>
+
+        </div>
+
+
+        <!-- ACTION -->
+        <div class="landing-action">
+
+          <button
+            id="btn-start-ordering"
+            class="btn btn-primary btn-lg landing-start-btn"
+            type="button"
+          >
+            <i data-lucide="shopping-bag"></i>
+            <span>Start Ordering</span>
+          </button>
+
+        </div>
+
+
+        <!-- SIMPLE NOTE -->
+        <p class="landing-note">
+          No account required
+        </p>
+
+      </section>
+
+    </main>
+
+
+    <!-- SHOP NOT FOUND -->
+    <section
+      id="landing-not-found"
+      class="landing-error"
+      hidden
+    >
+
+      <div class="landing-error-icon">
+        <i data-lucide="store-off"></i>
+      </div>
+
+      <p class="landing-eyebrow">
+        STOREFRONT
+      </p>
+
+      <h1>Shop Not Found</h1>
+
+      <p id="landing-error-message">
+        We could not find the shop requested by this QR code.
+      </p>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="landing-footer">
+      <span>Powered by <strong>SUMUKH</strong></span>
+    </footer>
+
+  </div>
+
+
+  <!-- SCRIPTS -->
+  <script src="js/data.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/landing.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+
+      SIT_LANDING.init();
+    });
+  </script>
+
+</body>
+</html>
