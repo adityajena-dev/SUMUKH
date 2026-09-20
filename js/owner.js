@@ -381,6 +381,31 @@ if (filtered.length === 0) {
   updateOrdersBadge();
 }
 
+function formatOrderDateTime(createdAt) {
+  const date = new Date(createdAt);
+
+  if (Number.isNaN(date.getTime())) {
+    return "—";
+  }
+
+  const months = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ];
+
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+
+  let hours = date.getHours();
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const period = hours >= 12 ? "PM" : "AM";
+
+  hours = hours % 12 || 12;
+
+  return `${day} ${month} ${year}, ${hours}:${minutes} ${period}`;
+}
+
 function createOrderCardElement(order) {
   const card = document.createElement("article");
   card.className = "order-card";
@@ -591,15 +616,23 @@ function createOrderCardElement(order) {
 
     <div class="order-card-footer">
 
-      <span class="order-total-price">
-        Total: ${SIT_DATA.formatCurrency(order.total)}
-      </span>
+  <span class="order-total-price">
+    Total: ${SIT_DATA.formatCurrency(order.total)}
+  </span>
 
-      <div class="order-actions-group">
-        ${actionBtns}
-      </div>
+  <div class="order-footer-right">
 
+    <div class="order-date-time">
+      ${formatOrderDateTime(order.createdAt)}
     </div>
+
+    <div class="order-actions-group">
+      ${actionBtns}
+    </div>
+
+  </div>
+
+</div>
   `;
 
   /* -----------------------------
