@@ -888,7 +888,7 @@ const SIT_CUSTOMER = (function () {
     );
 
     renderCatalog();
-    renderCart();
+    
     updateOrderConfirmBox();
   }
 
@@ -933,7 +933,7 @@ const SIT_CUSTOMER = (function () {
     );
 
     renderCatalog();
-    renderCart();
+    
     updateOrderConfirmBox();
   }
 
@@ -963,7 +963,7 @@ const SIT_CUSTOMER = (function () {
     );
 
     renderCatalog();
-    renderCart();
+    
     updateOrderConfirmBox();
   }
 
@@ -981,7 +981,7 @@ const SIT_CUSTOMER = (function () {
     );
 
     renderCatalog();
-    renderCart();
+    
     updateOrderConfirmBox();
   }
 
